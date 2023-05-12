@@ -1,10 +1,14 @@
 import fs from "node:fs/promises";
 import { v4 as uuidv4 } from "uuid";
 
-const fileName = "recipes.json";
+const filename = "recipes.json";
 
 // GET ALL RECIPES
-export async function getRecipes() {}
+export async function getRecipes() {
+  const recipesJSON = await fs.readFile(filename)
+  const recipes = JSON.parse(recipesJSON);
+  return recipes;
+}
 
 // GET A RECIPE BY ID
 export async function getRecipeByID(id) {}
