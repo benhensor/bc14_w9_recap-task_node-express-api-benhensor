@@ -42,8 +42,7 @@ export async function createRecipe(newRecipe) {
 
   const addedRecipe = {
     id: uuidv4(),
-    newRecipe,
-
+    test: newRecipe
 }
 recipes.push(addedRecipe);
 await fs.writeFile(filename, JSON.stringify(recipes));

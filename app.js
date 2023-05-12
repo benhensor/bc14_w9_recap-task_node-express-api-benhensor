@@ -9,8 +9,9 @@ import {
   deleteRecipeByID,
 } from "./recipes.js";
 
+
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -29,18 +30,20 @@ app.get("/api/recipes:id", async (req, res) => {
 })
 
 // input for recipe test
-const testRecipe = [
-  {
-    title: "Crunchy Frog",
-    ingredients: ["Frog", "Crunch", "Pieces of Envy"],
-    instructions: "Add together and have fun etc",
-    image: "https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-4-500x375.jpg"
-  }
-]
+// const testRecipe = [
+//   {
+//     title: "Crunchy Frog",
+//     ingredients: ["Frog", "Crunch", "Pieces of Envy"],
+//     instructions: "Add together and have fun etc",
+//     image: "https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-4-500x375.jpg"
+//   }
+// ]
+
 
 // creating a Recipe
 app.post("/api/recipes", async (req, res) => {
-  res.send(await createRecipe(testRecipe))
+  console.log("recipe posted")
+  res.send(await createRecipe())
 })
 
 const testUpdateRecipe = [
@@ -54,12 +57,12 @@ const testUpdateRecipe = [
 
 // update recipe by ID
 app.patch("/api/recipes/:id", async (req, res) => {
-  res.send(await updateRecipeByID("c7f45b21-6327-4d66-9c48-dbc8cbef5d3d", testUpdateRecipe))
+  res.send(await updateRecipeByID(id, testUpdateRecipe))
 })
 
 // delete recipe by ID
 app.delete("/api/recipes/:id", async (req, res) => {
-  res.send(await deleteRecipeByID("0c4de308-18ed-437e-9c00-bbf845159948"))
+  res.send(await deleteRecipeByID(id))
 })
 
 app.listen(PORT, () => {
