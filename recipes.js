@@ -38,15 +38,15 @@ export async function createRecipe(newRecipe) {
   const recipesJSON = await fs.readFile(filename);
   const recipes = JSON.parse(recipesJSON);
 
-  const newRecipe = {
+  const addedRecipe = {
     id: uuidv4(),
     newRecipe,
 
 }
-recipes.push(newRecipe);
+recipes.push(addedRecipe);
 await fs.writeFile(filename, JSON.stringify(recipes));
 
-return newRecipe;
+return addedRecipe;
 
 };
 
