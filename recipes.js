@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import { v4 as uuidv4 } from "uuid";
 
+
 const filename = "recipes.json";
 
 // GET ALL RECIPES
@@ -35,6 +36,7 @@ export async function getRecipeByID(id) {
 }
 
 
+
 // CREATE A RECIPE
 export async function createRecipe(newRecipe) {
   const recipesJSON = await fs.readFile(filename);
@@ -42,7 +44,10 @@ export async function createRecipe(newRecipe) {
 
   const addedRecipe = {
     id: uuidv4(),
-    test: newRecipe
+    title: newRecipe.title,
+    ingredients: newRecipe.ingredients,
+    instructions: newRecipe.instructions,
+    image: newRecipe.image  
 }
 recipes.push(addedRecipe);
 await fs.writeFile(filename, JSON.stringify(recipes));

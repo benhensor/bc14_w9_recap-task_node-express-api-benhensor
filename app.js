@@ -9,6 +9,7 @@ import {
   deleteRecipeByID,
 } from "./recipes.js";
 
+// import { gatherFormData } from "./public/main";
 
 const app = express();
 const PORT = 3000;
@@ -39,11 +40,13 @@ app.get("/api/recipes:id", async (req, res) => {
 //   }
 // ]
 
+// let newRecipe = gatherFormData()
 
 // creating a Recipe
 app.post("/api/recipes", async (req, res) => {
   console.log("recipe posted")
-  res.send(await createRecipe())
+  const createdRecipe = await createRecipe(req.body)
+  res.send({success: true, payload: createdRecipe})
 })
 
 const testUpdateRecipe = [

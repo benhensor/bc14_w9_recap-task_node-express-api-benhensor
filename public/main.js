@@ -41,7 +41,7 @@ async function createRecipe() {
   console.log(data);
 }
 
-function gatherFormData() {
+export function gatherFormData() {
   const title = document.querySelector("#title").value;
   const ingredientsList = document.querySelectorAll("#ingredients-list > li");
   const ingredients = Array.from(ingredientsList).map((li) => li.innerText);
