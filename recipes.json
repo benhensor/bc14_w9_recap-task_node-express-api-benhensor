@@ -21,8 +21,8 @@
     "id": "787f2b2b-73d1-4c42-a334-1b9644007aa9",
     "newRecipe": [
       {
-        "title": "Crunchy Frogy",
-        "ingredients": ["Frog", "Crunch", "Pieces of Envy"],
+        "title": "Squanchy Frog",
+        "ingredients": ["Frog", "Squanch", "An empty wardrobe"],
         "instructions": "Add together and have fun etc",
         "image": "https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-4-500x375.jpg"
       }
@@ -32,8 +32,8 @@
     "id": "1386fac2-af65-4c23-9968-32edc4792fa7",
     "newRecipe": [
       {
-        "title": "Crunchy Frog",
-        "ingredients": ["Frog", "Crunch", "Pieces of Envy"],
+        "title": "Random Frog",
+        "ingredients": ["Frog", "Nails", "Three bricks"],
         "instructions": "Add together and have fun etc",
         "image": "https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-4-500x375.jpg"
       }
@@ -43,35 +43,11 @@
     "id": "b6e0580e-71e6-4c41-8a6d-cf9db6228abb",
     "newRecipe": [
       {
-        "title": "Crunchy Frog",
-        "ingredients": ["Frog", "Crunch", "Pieces of Envy"],
-        "instructions": "Add together and have fun etc",
-        "image": "https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-4-500x375.jpg"
-      }
-    ]
-  },
-  {
-    "id": "7c5c50b4-9729-4df7-8f52-4c871d6de420",
-    "newRecipe": [
-      {
-        "title": "Crunchy Frog",
-        "ingredients": ["Frog", "Crunch", "Pieces of Envy"],
-        "instructions": "Add together and have fun etc",
-        "image": "https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-4-500x375.jpg"
-      }
-    ]
-  },
-
-  {
-    "id": "000c4b75-cb74-4a0b-8987-838a07b9bcf7",
-    "test": [
-      {
-        "title": "Crunchy Frog",
-        "ingredients": ["Frog", "Crunch", "Pieces of Envy"],
+        "title": "Confused Frog",
+        "ingredients": ["Frog", "Back End in general", "One Afternoon"],
         "instructions": "Add together and have fun etc",
         "image": "https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-4-500x375.jpg"
       }
     ]
   }
-
 ]

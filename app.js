@@ -44,12 +44,14 @@ app.post("/api/recipes", async (req, res) => {
 
 // update recipe by ID
 app.patch("/api/recipes/:id", async (req, res) => {
-  res.send(await updateRecipeByID(id, testUpdateRecipe))
+  const updateRecipe = updateRecipeByID(req.id, req.body)
+  res.send({ success: true, payload: updateRecipe })
 })
 
 // delete recipe by ID
 app.delete("/api/recipes/:id", async (req, res) => {
-  res.send(await deleteRecipeByID(id))
+  const deletedRecipe = await deleteRecipeByID(req.id)
+  res.send({ success: true, payload: deletedRecipe })
 })
 
 app.listen(PORT, () => {
