@@ -22,14 +22,14 @@ app.use(express.json());
 // get recipes
 app.get("/api/recipes", async function (req, res) {
   console.log(req.query, "this is the query")
-  const recipeArray = await getRecipes(req.body)
+  const recipeArray = await getRecipes(req.query)
   console.log(recipeArray)
   return res.json({ success: true, payload: recipeArray });
 })
 
 // get recipes by ID
-app.get("/api/recipes:id", async (req, res) => {
-  const chosenRecipe = await getRecipeByID(req.body.id)
+app.get("/api/recipes/:id", async (req, res) => {
+  const chosenRecipe = await getRecipeByID(req.body[0].id)
   res.send({ success: true, payload: chosenRecipe });
 })
 
@@ -44,7 +44,7 @@ app.post("/api/recipes", async (req, res) => {
 
 // update recipe by ID
 app.patch("/api/recipes/:id", async (req, res) => {
-  const updateRecipe = updateRecipeByID(req.id, req.body)
+  const updateRecipe = await updateRecipeByID(req.id, req.body)
   res.send({ success: true, payload: updateRecipe })
 })
 
