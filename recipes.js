@@ -27,8 +27,10 @@ export async function getRecipeByID(id) {
   if (recipeIndex !== null) {
     const selectedRecipe = recipes[recipeIndex]
     //await fs.writeFile(filename, JSON.stringify(recipes));
+    console.log("Recipe found")
     return selectedRecipe;
   }
+  console.log("Recipe not found")
   return null;
 }
 
@@ -88,8 +90,10 @@ export async function deleteRecipeByID(id) {
   if (recipeIndex !== null) {
     const deletedRecipe = recipes.splice(recipeIndex, 1);
     await fs.writeFile(filename, JSON.stringify(recipes));
+    console.log("Recipe deleted")
     return deletedRecipe[0];
   }
+  console.log("recipe not found")
   return null;
 
 }
