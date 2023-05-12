@@ -11,13 +11,85 @@ export async function getRecipes() {
 }
 
 // GET A RECIPE BY ID
-export async function getRecipeByID(id) {}
+export async function getRecipeByID(id) {
+  const recipesJSON = await fs.readFile(filename);
+  const recipes = JSON.parse(recipesJSON);
+
+  let recipeIndex = null;
+
+  for (let i = 0; i < recipes.length; i++) {
+    if (recipes[i].id === id) {
+      recipeIndex = i;
+      break;
+    }
+  }
+
+  if (recipeIndex !== null) {
+    const selectedRecipe = recipes[recipeIndex]
+    //await fs.writeFile(filename, JSON.stringify(recipes));
+    return selectedRecipe;
+  }
+  return null;
+}
+
 
 // CREATE A RECIPE
-export async function createRecipe(newRecipe) {}
+export async function createRecipe(newRecipe) {
+  const recipesJSON = await fs.readFile(filename);
+  const recipes = JSON.parse(recipesJSON);
+
+  const newRecipe = {
+    id: uuidv4(),
+    newRecipe,
+
+}
+recipes.push(newRecipe);
+await fs.writeFile(filename, JSON.stringify(recipes));
+
+return newRecipe;
+
+};
 
 // UPDATE A RECIPE BY ID
-export async function updateRecipeByID(id, updatedRecipe) {}
+export async function updateRecipeByID(id, updatedRecipe) {
+  const recipesJSON = await fs.readFile(filename);
+  const recipes = JSON.parse(recipesJSON);
+
+  let recipe = null;
+
+  for (let i = 0; i < recipes.length; i++) {
+    if (recipes[i].id === id) {
+      recipe = recipes[i];
+      recipes[i].updatedRecipe = updatedRecipe;
+      break;
+    }
+  }
+
+  await fs.writeFile(filename, JSON.stringify(recipes));
+
+  return recipe;
+}
 
 // DELETE A RECIPE BY ID
-export async function deleteRecipeByID(id) {}
+export async function deleteRecipeByID(id) {
+
+  const recipesJSON = await fs.readFile(filename);
+  const recipes = JSON.parse(recipesJSON);
+
+  let recipeIndex = null;
+
+  for (let i = 0; i < recipes.length; i++) {
+    if (recipes[i].id === id) {
+      recipeIndex = i;
+      break;
+    }
+  }
+
+  if (recipeIndex !== null) {
+    const deletedRecipe = recipes.splice(recipeIndex, 1);
+    await fs.writeFile(filename, JSON.stringify(recipes));
+    return deletedRecipe[0];
+  }
+  return null;
+
+}
