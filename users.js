@@ -1,14 +1,52 @@
-import fs from "node:fs/promises";
-import { v4 as uuidv4 } from "uuid";
+import fs from 'node:fs/promises';
+import { v4 as uuidv4 } from 'uuid';
 
-const fileName = "users.json";
+const filename = "users.json";
 
-export async function getUsers() {}
 
-export async function getUserByID(id) {}
+// GET USERS
 
-export async function createUser(newUser) {}
+// read and data from the json file 
+// parse data into a variable
+// return success = true and the variable
 
-export async function updateUserByID(id, updatedUser) {}
+export async function getUsers() {
+  try {
+  // READ/PARSE
+  const users =  JSON.parse(await fs.readFile(filename, "utf-8"))
+  return { success: true, payload: users }
+  } 
+  catch (error) {
+  console.error(error)
+  throw error
+  }
+  
+}
 
-export async function deleteUserByID(id) {}
+
+// GET USER BY ID
+
+export async function getUserByID(id) {
+  
+}
+
+
+// CREATE USER 
+
+export async function createUser(newUser) {
+ 
+}
+
+
+// UPDATE USER BY ID 
+
+export async function updateUserByID(id, updatedUser) {
+ 
+}
+
+
+// DELETE USER 
+
+export async function deleteUserByID(id) {
+ 
+}

@@ -348,5 +348,33 @@
     "last_name": "Agneau",
     "email": "cagneau1d@1688.com",
     "catchphrase": "Automated asymmetric matrix"
+  },
+  {
+    "id": "57df3822-cfd3-4863-995f-9b651c50939f",
+    "first_name": "Susan",
+    "last_name": "Susansson",
+    "email": "imfinethankyoususan@gmail.com",
+    "catchphrase": "I'm fine thank you Susan!"
+  },
+  {
+    "id": "37452803-82f4-4d93-84ac-4f1f37d9173e",
+    "first_name": "Grimsby",
+    "last_name": "Simpleton",
+    "email": "simplyGrim@grim.com",
+    "catchphrase": "It's bloody grim"
+  },
+  {
+    "id": "508e2609-525b-46d2-8239-f72632a9e0af",
+    "first_name": "Keith",
+    "last_name": "`Spoonbender McToffeeNipples",
+    "email": "imfinethankyoususan@gmail.com",
+    "catchphrase": "I'm fine thank you Susan!"
+  },
+  {
+    "id": "594f8cda-d893-4609-9435-6a19e2e160e7",
+    "first_name": "Slightly",
+    "last_name": "Odd",
+    "email": "slightlyodd@gmail.com",
+    "catchphrase": "Have you finished with that sandwich?"
   }
 ]
