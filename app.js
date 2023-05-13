@@ -25,8 +25,13 @@ app.get("/api/users/:id", async (req, res) => {
 })
 
 // Create new user: 
-app.post("/api/users", (req, res) => {
-
+app.post("/api/users", async (req, res) => {
+  try {
+    const user = await createUser(req.body)
+    res.json({ success: true, payload: user })
+  } catch (error) {
+    res.status(500).json({ success: false, payload: error.message })
+  }
 });
 
 
