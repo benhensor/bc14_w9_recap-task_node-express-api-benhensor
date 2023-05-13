@@ -15,8 +15,13 @@ app.get("/api/users", async (req, res) => {
 })
 
 // Get user by ID
-app.get("/api/users/:id", (req, res) => {
-
+app.get("/api/users/:id", async (req, res) => {
+  try {
+    const user = await getUserByID(req.params.id)
+    res.json({ success: true, payload: user })
+  } catch (error) {
+    res.status(404).json({ success: false, payload: error.message })
+  }
 })
 
 // Create new user: 
