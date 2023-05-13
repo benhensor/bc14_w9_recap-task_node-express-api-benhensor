@@ -36,8 +36,13 @@ app.post("/api/users", async (req, res) => {
 
 
 // Update user by ID
-app.patch("/api/users/:id", (req, res) => {
-
+app.patch("/api/users/:id", async (req, res) => {
+  try {
+    const user = await updateUserByID(req.params.id, req.body)
+    res.json({ success: true, payload: user })
+  } catch (error) {
+    res.status(500).json({ success: false, payload: error.message })
+  }  
 });
 
 

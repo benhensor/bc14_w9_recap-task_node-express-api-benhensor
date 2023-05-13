@@ -72,7 +72,32 @@ export async function createUser(newUser) {
 // UPDATE USER BY ID 
 
 export async function updateUserByID(id, updatedUser) {
- 
+  try {
+  // READ/PARSE
+  const users =  JSON.parse(await fs.readFile(filename, "utf-8"))
+  const { first_name, last_name, email, catchphrase } = updatedUser
+  // find user by id
+  const userIndex = users.findIndex((user) => user.id === id)
+  // if user not found, throw error
+  if (userIndex === -1) {
+    throw new Error(`User with ID: ${id} not found`)
+  }
+  // update user
+  users[userIndex] = {
+    id,
+    first_name,
+    last_name,
+    email,
+    catchphrase
+  }
+
+  // write to the json file
+  await fs.writeFile(filename, JSON.stringify(users), "utf-8")
+  return updatedUser;
+} catch (error) {
+  console.error(error)
+  throw error
+}
 }
 
 
