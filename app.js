@@ -47,8 +47,13 @@ app.patch("/api/users/:id", async (req, res) => {
 
 
 // Delete user
-app.delete("/api/users/:id", (req, res) => {
-
+app.delete("/api/users/:id", async (req, res) => {
+  try {
+    const user = await deleteUserByID(req.params.id)
+    res.json({ success: true, payload: user })
+  } catch (error) {
+    res.status(500).json({ success: false, payload: error.message })
+  }
 });
 
 const port = process.env.PORT || 3000;
