@@ -18,35 +18,63 @@ app.use(express.static("public"));
 app.use(express.json());
 
 
-
 // get recipes
-app.get("/api/recipes", async function (req, res) {
-  console.log(req.query, "this is the query")
-  const recipeArray = await getRecipes(req.query)
-  console.log(recipeArray)
-  return res.json({ success: true, payload: recipeArray });
+app.get("/api/recipes", async (req, res) => {
+  // how do we want to respond to this request?
+  // use getRecipes helper function to read all recipes 
+  // send recipes back as json to client
+
+  const payload = await getRecipes();
+
+  console.log('This is the data being sent back to the client', payload)
+
+  const body = { success: true, payload: payload }
+  
+  res.json(body);
 })
+
 
 // get recipes by ID
 app.get("/api/recipes/:id", async (req, res) => {
-  const chosenRecipe = await getRecipeByID(req.body[0].id)
-  res.send({ success: true, payload: chosenRecipe });
+  const recipeId = req.params.id
+  const payload = await getRecipeByID(recipeId);
+  const success = payload !== undefined
+
+  if (success) {
+    const body = { success: success, payload: payload }
+    return res.json(body)
+  }
+  res.status(404).json({
+    sucess: false,
+    payload: null,
+  })
 })
 
 
 // creating a Recipe
 app.post("/api/recipes", async (req, res) => {
-  console.log("recipe posted")
-  const createdRecipe = await createRecipe(req.body)
-  res.send({success: true, payload: createdRecipe})
+  const recipeWithoutId = req.body
+  // use createRecipe function
+  const payload = await createRecipe(recipeWithoutId)
+
+  const body = { success: true, payload: payload }
+  res.json(body)
 })
 
 
 // update recipe by ID
 app.patch("/api/recipes/:id", async (req, res) => {
-  const updateRecipe = await updateRecipeByID(req.id, req.body)
-  res.send({ success: true, payload: updateRecipe })
+
+  const recipeId = req.params.id 
+  const updates = req.body
+  const payload = await updateRecipeByID(recipeId, updates)
+
+  const body = { success: true, payload: payload }
+
+
+  res.json(body)
 })
+
 
 // delete recipe by ID
 app.delete("/api/recipes/:id", async (req, res) => {

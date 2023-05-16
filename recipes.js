@@ -6,81 +6,70 @@ const filename = "recipes.json";
 
 // GET ALL RECIPES
 export async function getRecipes() {
-  const recipesJSON = await fs.readFile(filename)
-  const recipes = JSON.parse(recipesJSON);
+  // read/parse json file
+  const recipesJSON = await fs.readFile(filename, { encoding: 'utf-8'})
+  const recipes = JSON.parse(recipesJSON)
   return recipes;
 }
 
 // GET A RECIPE BY ID
 export async function getRecipeByID(id) {
-  const recipesJSON = await fs.readFile(filename);
-  const recipes = JSON.parse(recipesJSON);
-
-  let recipeIndex = null;
+  // read/parse json file
+  const recipes = await getRecipes();
 
   for (let i = 0; i < recipes.length; i++) {
-    if (recipes[i].id === id) {
-      recipeIndex = i;
-      break;
+    const currentRecipe = recipes[i]
+    if (currentRecipe.id === id) {
+      return currentRecipe
     }
   }
-
-  if (recipeIndex !== null) {
-    const selectedRecipe = recipes[recipeIndex]
-    //await fs.writeFile(filename, JSON.stringify(recipes));
-    console.log("Recipe found")
-    return selectedRecipe;
-  }
-  console.log("Recipe not found")
-  return null;
+  return console.log('undefined');
 }
 
 
 
 // CREATE A RECIPE
 export async function createRecipe(newRecipe) {
-  const recipesJSON = await fs.readFile(filename);
-  const recipes = JSON.parse(recipesJSON);
-
-  const addedRecipe = {
+  // read/parse existing recipes
+  const recipes = await getRecipes();
+  // create new recipe object with id
+  // merging newRecipe with id 
+  const created = {
     id: uuidv4(),
-    title: newRecipe.title,
-    ingredients: newRecipe.ingredients,
-    instructions: newRecipe.instructions,
-    image: newRecipe.image  
-}
-recipes.push(addedRecipe);
-await fs.writeFile(filename, JSON.stringify(recipes));
+    ...newRecipe,
+  }
 
-return addedRecipe;
+  // add recipe to existing recipes 
+  recipes.push(created)
+  // save to disk
+  const  json = JSON.stringify(recipes)
 
+  await fs.writeFile(filename, json, { encoding: 'utf-8' })
 };
 
 // UPDATE A RECIPE BY ID
 export async function updateRecipeByID(id, updatedRecipe) {
-  const recipesJSON = await fs.readFile(filename);
-  const recipes = JSON.parse(recipesJSON);
+  // read/parse existing recipes
+  const recipes = await getRecipes();
 
-  let recipe = null;
+  const indexFound = recipes.findIndex(recipe => recipe.id === id)
 
-  for (let i = 0; i < recipes.length; i++) {
-    if (recipes[i].id === id) {
-      recipe = recipes[i];
-      recipes[i].updatedRecipe = updatedRecipe;
-      break;
+  if (indexFound >= 0) {
+    const preUpdate = recipes[indexFound]
+    const updated = {
+      ...preUpdate,
+      ...updates,
+      id: id,
     }
-  }
-
-  await fs.writeFile(filename, JSON.stringify(recipes));
-
-  return recipe;
+    recipes[indexFound] = updated;
+    return recipes[indexFound]
+  } 
 }
 
 // DELETE A RECIPE BY ID
 export async function deleteRecipeByID(id) {
-
-  const recipesJSON = await fs.readFile(filename);
-  const recipes = JSON.parse(recipesJSON);
+  // read/parse existing recipes
+  const recipes = await getRecipes();
 
   let recipeIndex = null;
 
